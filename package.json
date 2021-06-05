@@ -6,7 +6,8 @@
     "start": "SET NODE_ENV = production & node ./dist-server/bin/www",
     "watch:dev": "SET NODE_ENV = production & babel-watch ./server/bin/www",
     "clean": "rimraf dist-server",
-    "build:ser": "npm run clean && babel ./server --out-dir dist-server --copy-files"
+    "build:ser": "npm run clean && babel ./server --out-dir dist-server --copy-files",
+    "webpack:ser": "SET NODE_ENV= development & webpack serve --config ./webpack.config.js --mode development"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
