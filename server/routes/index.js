@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express', author: 'Programacion web fullstack' });
+  res.render('index', { title: 'Express', author: 'Programacion web fullstack', babel: 'Babel funcionando'});
 });
 
 /* Primer Ejercicio */
