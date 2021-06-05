@@ -1,3 +1,1 @@
-"use strict";
-
-alert('Tercer Ejercicio');
+"use strict";alert("Tercer Ejercicio");
