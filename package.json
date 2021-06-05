@@ -5,9 +5,12 @@
   "scripts": {
     "start": "SET NODE_ENV = production & node ./dist-server/bin/www",
     "watch:dev": "SET NODE_ENV = production & babel-watch ./server/bin/www",
-    "clean": "rimraf dist-server",
-    "build:ser": "npm run clean && babel ./server --out-dir dist-server --copy-files",
-    "webpack:ser": "SET NODE_ENV= development & webpack serve --config ./webpack.dev.config.js --mode development"
+    "webpack:ser": "SET NODE_ENV= development & webpack serve --config ./webpack.dev.config.js --mode development",
+    "cleans": "rimraf dist-server",
+    "cleanc": "rimraf public/js",
+    "build:ser": "npm run cleans && babel ./server --out-dir dist-server --copy-files",
+    "build:cli": "npm run cleanc && webpack --config ./webpack.config.js --mode production",
+    "build": "npm run build:cli && npm run build:ser"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -23,9 +26,11 @@
     "@babel/core": "^7.14.3",
     "@babel/node": "^7.14.2",
     "@babel/preset-env": "^7.14.4",
+    "babel-loader": "^8.2.2",
     "babel-plugin-module-resolver": "^4.1.0",
     "babel-preset-minify": "^0.5.1",
     "babel-watch": "^7.4.1",
+    "corejs": "^1.0.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-middleware": "^5.0.0",
