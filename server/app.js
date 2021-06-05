@@ -7,8 +7,42 @@ import logger from 'morgan';
 import indexRouter from '@s-routes/index';
 import usersRouter from '@s-routes/users';
 
+// Webpack modules
+import webpack from 'webpack';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
+import webpackDevConfig from '../webpack.dev.config';
+
+// Consultando el modo en el que se esta ejecutando la aplicacion
+const env = process.env.NODE_ENV || 'development';
+
 var app = express();
 
+// Se crea la aplicacion en express
+if (env === 'development') {
+  console.log('> Executing in Development Mode: Webpack Hot Realoding');
+  // 1. Agregando la Ruta HMR
+  // Reload = true: Habilita la recarga del frontend cuando hay cambios en el codigo
+  // Fuente del frontend
+  // Timeout = 1000: Tiempo de espera entre la recarga de página
+  webpackDevConfig.entry['webpack-hot-middleware/client?reload=true&timeout=1000', webpackDevConfig.entry];
+
+  // 2. Agregamos el plugin
+  webpackDevConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+
+  // 3. Crear el compilador de webpack
+  const compiler = webpack(webpackDevConfig);
+
+  // 4. Agregando el middleware a la cadena de middlewares de nuestra aplicación
+  app.use(webpackDevMiddleware(compiler,{
+    publicPath: webpackDevConfig.output.publicPath
+  }));
+
+  // 5. Agregando el Webpack Hot Middleware
+  app.use(webpackHotMiddleware(compiler));
+} else {
+  console.log('> Excecuting in Production Mode...');
+}
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
