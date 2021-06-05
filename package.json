@@ -31,6 +31,8 @@
     "babel-preset-minify": "^0.5.1",
     "babel-watch": "^7.4.1",
     "corejs": "^1.0.0",
+    "css-loader": "^5.2.6",
+    "mini-css-extract-plugin": "^1.6.0",
     "webpack": "^5.38.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-middleware": "^5.0.0",
