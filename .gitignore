@@ -1,2 +1,6 @@
 # Este archivo ignora las dependencias
 node_modules
+dist-server
+# Ignora los archivos de logs
+logs
+*.logs

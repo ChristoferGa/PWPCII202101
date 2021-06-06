@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import ExpHbs from 'express-handlebars';
 import path from 'path';
 // Exportando una función de configuración
